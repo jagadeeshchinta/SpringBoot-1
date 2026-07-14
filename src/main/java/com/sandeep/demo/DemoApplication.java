@@ -21,8 +21,8 @@ public class DemoApplication {
 //		student.setAge(21);
 //		student.display();
 
-		OrderService orderService = context.getBean(OrderService.class);
-		orderService.plceorder();
+//		OrderService orderService = context.getBean(OrderService.class);
+//		orderService.plceorder();
 	}
 
 }
