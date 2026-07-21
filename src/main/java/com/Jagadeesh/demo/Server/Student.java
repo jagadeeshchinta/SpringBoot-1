@@ -1,4 +1,4 @@
-package com.sandeep.demo.Server;
+package com.jagadeesh.demo.Server;
 
 public class Student {
 

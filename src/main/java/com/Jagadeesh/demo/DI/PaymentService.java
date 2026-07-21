@@ -1,4 +1,4 @@
-package com.sandeep.demo.DI;
+package com.jagadeesh.DI;
 
 
 import org.springframework.stereotype.Component;

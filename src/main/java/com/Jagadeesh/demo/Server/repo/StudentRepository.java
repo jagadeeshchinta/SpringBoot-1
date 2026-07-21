@@ -1,8 +1,8 @@
-package com.sandeep.demo.Server.repo;
+package com.jagadeesh.demo.Server.repo;
 
 
 
-    import com.sandeep.demo.Server.entity.Student;
+    import com.jagadeesh.demo.Server.entity.Student;
     import org.springframework.data.jpa.repository.JpaRepository;
     import org.springframework.stereotype.Repository;
 

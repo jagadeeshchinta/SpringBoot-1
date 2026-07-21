@@ -1,12 +1,12 @@
-package com.sandeep.demo.Server.controller;
+package com.jagadeesh.demo.Server.controller;
 
 
-import com.sandeep.demo.Server.DTO.CreateStudentRequestDTO;
-import com.sandeep.demo.Server.DTO.CreateStudentResponseDTO;
-import com.sandeep.demo.Server.DTO.UpdateStudentRequestDTO;
-import com.sandeep.demo.Server.DTO.UpdateStudentResponseDTO;
-import com.sandeep.demo.Server.entity.Student;
-import com.sandeep.demo.Server.service.StudentService;
+import com.jagadeesh.demo.Server.DTO.CreateStudentRequestDTO;
+import com.jagadeesh.demo.Server.DTO.CreateStudentResponseDTO;
+import com.jagadeesh.demo.Server.DTO.UpdateStudentRequestDTO;
+import com.jagadeesh.demo.Server.DTO.UpdateStudentResponseDTO;
+import com.jagadeesh.demo.Server.entity.Student;
+import com.jagadeesh.demo.Server.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

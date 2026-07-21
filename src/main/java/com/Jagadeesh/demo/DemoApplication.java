@@ -1,6 +1,6 @@
-package com.sandeep.demo;
+package com.jagadeesh.demo;
 
-import com.sandeep.demo.DI.OrderService;
+import com.jagadeesh.demo.DI.OrderService;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.sandeep.demo.Portfolio;
+package com.jagadeesh.demo.Portfolio;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

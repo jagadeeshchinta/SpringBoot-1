@@ -1,4 +1,4 @@
-package com.sandeep.demo.scope;
+package com.jagadeesh.demo.scope;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

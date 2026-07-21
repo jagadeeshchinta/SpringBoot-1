@@ -1,4 +1,4 @@
-package com.sandeep.demo.Server.entity;
+package com.jagadeesh.demo.Server.entity;
 
 
 import jakarta.persistence.Entity;

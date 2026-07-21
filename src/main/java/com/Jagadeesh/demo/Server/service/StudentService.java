@@ -1,10 +1,10 @@
-package com.sandeep.demo.Server.service;
+package com.jagadeesh.demo.Server.service;
 
-import com.sandeep.demo.Server.DTO.CreateStudentRequestDTO;
-import com.sandeep.demo.Server.DTO.CreateStudentResponseDTO;
-import com.sandeep.demo.Server.DTO.UpdateStudentRequestDTO;
-import com.sandeep.demo.Server.entity.Student;
-import com.sandeep.demo.Server.repo.StudentRepository;
+import com.jagadeesh.demo.Server.DTO.CreateStudentRequestDTO;
+import com.jagadeesh.demo.Server.DTO.CreateStudentResponseDTO;
+import com.jagadeesh.demo.Server.DTO.UpdateStudentRequestDTO;
+import com.jagadeesh.demo.Server.entity.Student;
+import com.jagadeesh.demo.Server.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

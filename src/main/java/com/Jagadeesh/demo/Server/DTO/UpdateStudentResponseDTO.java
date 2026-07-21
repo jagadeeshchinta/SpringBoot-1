@@ -1,6 +1,6 @@
-package com.sandeep.demo.Server.DTO;
+package com.jagadeesh.demo.Server.DTO;
 
-import com.sandeep.demo.Server.entity.Student;
+import com.jagadeesh.demo.Server.entity.Student;
 import lombok.Getter;
 import lombok.Setter;
 

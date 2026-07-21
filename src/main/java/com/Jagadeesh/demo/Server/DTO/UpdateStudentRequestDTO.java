@@ -1,4 +1,4 @@
-package com.sandeep.demo.Server.DTO;
+package com.jagadeesh.demo.Server.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
