@@ -1,6 +1,10 @@
 package com.sandeep.demo.Server.controller;
 
 
+import com.sandeep.demo.Server.DTO.CreateStudentRequestDTO;
+import com.sandeep.demo.Server.DTO.CreateStudentResponseDTO;
+import com.sandeep.demo.Server.DTO.UpdateStudentRequestDTO;
+import com.sandeep.demo.Server.DTO.UpdateStudentResponseDTO;
 import com.sandeep.demo.Server.entity.Student;
 import com.sandeep.demo.Server.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,31 +16,84 @@ public class StudentController {
 
     StudentService studentService;
 
-
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
-    // create the student
-    @PostMapping("/addstudent")
-    public ResponseEntity<?> storeStudent(@RequestBody Student student) {
-        Student result = studentService.studentValidate(student);
+
+    /**
+     * post maping
+     *
+     * @param createStudentRequestDTO
+     * @return
+     */
+    @PostMapping("/create")
+    public ResponseEntity<?> storeStudent(@RequestBody CreateStudentRequestDTO createStudentRequestDTO) {
+        CreateStudentResponseDTO result = studentService.studentValidate(createStudentRequestDTO);
 
         if (result == null) {
-            return ResponseEntity.status(400).body("Invalid data");
+            return ResponseEntity.status(400).body("one of the entru is wrong ");
         }
+
+        //if(result.)
         return ResponseEntity.status(201).body(result);
+    }
+
+    /**
+     * get mapping
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/getStudent/{id}")
+    public ResponseEntity<?> getStudentById(@PathVariable int id) throws Exception {
+
+        Student student = studentService.getStudentById(id);
+
+//        if (student == null) {
+//            return ResponseEntity.status(404).body("Student not found");
+//        }
+
+        return ResponseEntity.ok(student);
     }
 
 
     /**
-     * <?> this symbol is used for
+     * put mapping
+     *
+     * @param id
+     * @return
      */
 
-    @GetMapping("/getstudent/{id}")
-    public ResponseEntity<?> getStudentBy(@PathVariable Integer id) {
-        Student student = studentService.getStudentById(id);
-        return ResponseEntity.status(200).body(student);
+    @PutMapping("/updateStudent/{id}")
+    public ResponseEntity<?> updateStudent(@PathVariable int id,
+                                           @RequestBody UpdateStudentRequestDTO updateStudentRequestDTO) {
+        Student updatedStudent = studentService.studentUpdate(id, updateStudentRequestDTO);
+
+        if (updatedStudent == null) {
+            return ResponseEntity.status(400).body("Invalid input or student not found");
+        }
+
+        // return name and age no other return
+        UpdateStudentResponseDTO responseDTO = new UpdateStudentResponseDTO(updatedStudent);
+        return ResponseEntity.ok(responseDTO);
+    }
+
+
+    /**
+     * deletyr mapping
+     *
+     * @param id
+     * @return
+     */
+
+    @DeleteMapping("/deleteStudent/{id}")
+    public ResponseEntity<?> deleteStudent(@PathVariable int id) {
+        Student student = studentService.deleteStudent(id);
+        if (student == null) {
+            return ResponseEntity.status(400).body("Invalid input");
+        }
+        return ResponseEntity.status(200).body("Student deleted");
     }
 }

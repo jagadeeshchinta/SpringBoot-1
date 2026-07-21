@@ -1,37 +1,129 @@
 package com.sandeep.demo.Server.service;
 
-
+import com.sandeep.demo.Server.DTO.CreateStudentRequestDTO;
+import com.sandeep.demo.Server.DTO.CreateStudentResponseDTO;
+import com.sandeep.demo.Server.DTO.UpdateStudentRequestDTO;
 import com.sandeep.demo.Server.entity.Student;
 import com.sandeep.demo.Server.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+
 @Service
 public class StudentService {
     StudentRepository studentRepository;
+
 
     @Autowired
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
-    public Student studentValidate(Student student) {
 
-        int id = student.getId();
-        String name = student.getName();
-        int age = student.getAge();
-        String department = student.getDepartment();
+    public CreateStudentResponseDTO studentValidate(CreateStudentRequestDTO createStudentRequestDTO) {
 
-        if(id < 0 || name == null || age < 0 || department == null) {
-            return null;
+        Student student = mapToStudent(createStudentRequestDTO);
+
+
+        if (studentRepository.existsByEmail(student.getEmail())) {
+            throw new IllegalArgumentException("Email is already taken");
         }
 
         studentRepository.save(student);
-        return student;
-
+        return mapToResponseDTO(student);
     }
 
+
+
+    /**
+     * get student by ID
+     *
+     * @param id
+     * @return
+     */
     public Student getStudentById(int id) {
-        return studentRepository.findById(id).orElse(null);
+        Optional<Student> student = studentRepository.findById(id);
+        return student.get();
+        /**
+         *
+         */
+//        return studentRepository.findById(id).orElse(null);
     }
+
+    /**
+     * Update student method
+     *
+     * @param id
+     * @param updateStudentRequestDTO
+     * @return
+     */
+
+    public Student studentUpdate(int id, UpdateStudentRequestDTO updateStudentRequestDTO) {
+        Student result = studentRepository.findById(id).orElse(null);
+
+        if (result == null) {
+            return null; // student not found
+        }
+
+        // name and age only update no other update
+        result.setName(updateStudentRequestDTO.getName());
+        result.setAge(updateStudentRequestDTO.getAge());
+
+        return studentRepository.save(result);
+    }
+
+
+    /**
+     * Delete student
+     *
+     * @param id
+     * @return
+     */
+
+    public Student deleteStudent(int id) {
+        Student result = studentRepository.findById(id).orElse(null);
+        if (result == null) {
+            return null;
+        }
+        studentRepository.delete(result);
+        return result;
+    }
+
+
+    /**
+     * mapto function
+     *
+     * @param createStudentRequestDTO
+     * @return
+     */
+    private Student mapToStudent(CreateStudentRequestDTO createStudentRequestDTO) {
+        Student student = new Student();
+
+        student.setName(createStudentRequestDTO.getName());
+        student.setAge(createStudentRequestDTO.getAge());
+        student.setDepartment(createStudentRequestDTO.getDepartment());
+        student.setEmail(createStudentRequestDTO.getEmail());
+        student.setCreatedAt(LocalDateTime.now());
+        student.setUpdatedAt(LocalDateTime.now());
+
+        return student;
+    }
+
+    private CreateStudentResponseDTO mapToResponseDTO(Student student) {
+        CreateStudentResponseDTO createStudentResponseDTO = new CreateStudentResponseDTO();
+        createStudentResponseDTO.setId(student.getId());
+        createStudentResponseDTO.setName(student.getName());
+        createStudentResponseDTO.setAge(student.getAge());
+        createStudentResponseDTO.setEmail(student.getEmail());
+        createStudentResponseDTO.setDepartment(student.getDepartment());
+        createStudentResponseDTO.setDepartment(student.getDepartment());
+
+        return createStudentResponseDTO;
+
+    }
+
+
 }
